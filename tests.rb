@@ -15,6 +15,12 @@ class Condition
   end
 end
 
+class TenDayForecast
+  def initialize(zipcode)
+    @ten_day = JSON.parse(File.read("ten_day_forecast.json"))
+  end
+end
+
 class WeatherUnderground < Minitest::Test
 
   def test_classes_exist
@@ -30,5 +36,13 @@ class WeatherUnderground < Minitest::Test
     c = Condition.new(27616)
     assert_equal "Brentwood, NC", c.location
     assert_equal 50.9, c.temperature
+  end
+
+  def test_ten_day_forecast
+    tdf = TenDayForecast.new(27616)
+    assert_equal "Brentwood, NC", tdf.location
+    assert_equal ["Monday", "Cloudy with rain. Lows overnight in the low 40s."], tdf.text_forecast.first
+    assert_equal ["Wednesday Night", "Cloudy with showers. Low around 40F. Winds
+                 light and variable. Chance of rain 60%."], tdf.text_forecast.last
   end
 end

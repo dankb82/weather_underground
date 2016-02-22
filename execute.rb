@@ -3,7 +3,7 @@ require './condition.rb'
 puts "Enter a zipcode"
 zipcode = gets.chomp
 
-c = Conditions.new(zipcode)
+c = Condition.new(zipcode)
 
 puts "Location: #{c.location}"
 
