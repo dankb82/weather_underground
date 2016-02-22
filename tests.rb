@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'HTTParty'
+require 'json'
 require './alerts.rb'
 require './astronomy.rb'
 require './conditions.rb'
