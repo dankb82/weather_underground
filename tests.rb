@@ -11,12 +11,14 @@ require './ten_day_forecast.rb'
 
 class Condition
   def initialize(zipcode)
+    @zipcode = zipcode
     @conditions = JSON.parse(File.read("conditions.json"))
   end
 end
 
 class TenDayForecast
   def initialize(zipcode)
+    @zipcode = zipcode
     @ten_day = JSON.parse(File.read("ten_day_forecast.json"))
   end
 end
@@ -40,9 +42,7 @@ class WeatherUnderground < Minitest::Test
 
   def test_ten_day_forecast
     tdf = TenDayForecast.new(27616)
-    assert_equal "Brentwood, NC", tdf.location
     assert_equal ["Monday", "Cloudy with rain. Lows overnight in the low 40s."], tdf.text_forecast.first
-    assert_equal ["Wednesday Night", "Cloudy with showers. Low around 40F. Winds
-                 light and variable. Chance of rain 60%."], tdf.text_forecast.last
+    assert_equal ["Wednesday Night", "Cloudy with showers. Low around 40F. Winds light and variable. Chance of rain 60%."], tdf.text_forecast[-1]
   end
 end
