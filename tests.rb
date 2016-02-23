@@ -26,8 +26,9 @@ end
 class Astronomy
   def initialize(zipcode)
     @zipcode = zipcode
-    @sun = JSON.parse(File.read("astronomy.json"))
+    @astronomy = JSON.parse(File.read("astronomy.json"))
   end
+end
 
 class WeatherUnderground < Minitest::Test
 

@@ -7,7 +7,6 @@ class Condition
 
   def temperature
     @conditions["current_observation"]["temp_f"]
-
   end
 
   def location
