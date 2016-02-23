@@ -23,6 +23,12 @@ class TenDayForecast
   end
 end
 
+class Astronomy
+  def initialize(zipcode)
+    @zipcode = zipcode
+    @sun = JSON.parse(File.read("astronomy.json"))
+  end
+
 class WeatherUnderground < Minitest::Test
 
   def test_classes_exist
@@ -42,7 +48,13 @@ class WeatherUnderground < Minitest::Test
 
   def test_ten_day_forecast
     tdf = TenDayForecast.new(27616)
-    assert_equal ["Monday", "Cloudy with rain. Lows overnight in the low 40s."], tdf.text_forecast.first
+    assert_equal ["Monday", "Cloudy with rain. Lows overnight in the low 40s."], tdf.text_forecast[0]
     assert_equal ["Wednesday Night", "Cloudy with showers. Low around 40F. Winds light and variable. Chance of rain 60%."], tdf.text_forecast[-1]
+  end
+
+  def test_sunrise_and_sunset
+    a = Astronomy.new(27616)
+    assert_equal "6:53", a.sunrise
+    assert_equal "18:02", a.sunset
   end
 end
